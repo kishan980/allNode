@@ -1,0 +1,17 @@
+{
+  "name": "msaccessnode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mssql": "^6.3.0",
+    "mysql": "^2.18.1",
+    "node-adodb": "^5.0.3",
+    "uninstall": "0.0.0"
+  }
+}
