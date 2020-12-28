@@ -23,6 +23,4 @@ module.exports ={
     testQuery:testQuery,
     testBody:testBody,
     testQuery:testParams
-
-
 }

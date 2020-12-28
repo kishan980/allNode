@@ -9,7 +9,8 @@ let setRouter = (app) =>{
     app.get("/print", BlogController.printData);
     // app.get("/print", printData);
 
-    app.get("/test/route/:params1/:paarsm:2", BlogController.testQuery);
+    app.get("/test/route/:params1/:paarsm2", BlogController.testQuery);
+    app.get("/test", BlogController.testQuery);
 }
 
 module.exports ={

@@ -4,10 +4,22 @@ const fs = require('fs');
 const mongoose = require("mongoose");
 const cookieParse = require("cookie-parser");
 const bodyParse = require("body-parser");
+const globleErrorMiddleware = require("./middlewares/appErrorHandler");
+const routeLoggerMiddleware = require("./middlewares/routesLogger");
 const app = express();
 app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({extended:false}));
 app.use(cookieParse());
+
+app.use(globleErrorMiddleware.globleErrorhandler);
+app.use(routeLoggerMiddleware.logIp);
+
+let modelusPath = './models';
+ fs.readdirSync(modelusPath).forEach(function(file){
+     if(~file.indexOf('.js')) 
+     console.log(modelusPath +'/'+ file);
+     require(modelusPath +'/'+ file);
+ })
 
 let routerPath = './routes';
 fs.readdirSync(routerPath).forEach(function(file){
@@ -18,12 +30,7 @@ fs.readdirSync(routerPath).forEach(function(file){
     }
 })
 
-let modelusPath = './models';
- fs.readdirSync(modelusPath).forEach(function(file){
-     if(~file.indexOf('.js')) 
-     console.log(modelusPath +'/'+ file);
-     require(modelusPath +'/'+ file);
- })
+app.use(globleErrorMiddleware.globleNotFoundHandler);
 
 // var helloData = (req,res) => res.send("Hello world");
 // app.get("/hello", helloData);
